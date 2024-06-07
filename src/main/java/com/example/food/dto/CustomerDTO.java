@@ -1,17 +1,18 @@
 package com.example.food.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class CustomerDTO {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String city;
-    private String country;
-    private String phone;
+    int id;
+    String firstName;
+    String lastName;
+    String city;
+    String country;
+    String phone;
 }
