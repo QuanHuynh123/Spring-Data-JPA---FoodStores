@@ -32,4 +32,8 @@ public class CustomerService {
                 .map(customerMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public void deleteCustomer(int id){
+        customerRepository.deleteById(String.valueOf(id));
+    }
 }

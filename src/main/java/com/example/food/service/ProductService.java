@@ -39,7 +39,7 @@ public class ProductService {
         return productMapper.toDTO(saveEntity);
     }
 
-    public void saveProduct(int idProduct){
+    public void deleteProduct(int idProduct){
         productRepository.deleteById(idProduct);
     }
 }
