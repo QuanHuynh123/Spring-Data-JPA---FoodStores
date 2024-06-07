@@ -1,5 +1,6 @@
 package com.example.food.controller;
 
+import com.example.food.dto.ApiResponse;
 import com.example.food.dto.ProductDTO;
 import com.example.food.entity.ProductEntity;
 import com.example.food.service.ProductService;
@@ -16,10 +17,13 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/getAllProduct")
-    public List<ProductDTO> getAllProduct(){
-        return productService.getAllProduct();
+    public ApiResponse<List<ProductDTO>> getAllProduct(){
+        return ApiResponse.<List<ProductDTO>>builder()
+                .result(productService.getAllProduct())
+                .build();
     }
 
+    // add handling exception
     @GetMapping("/findOneProduct/{idProduct}")
     public Optional<ProductDTO> getOneProduct(@PathVariable int idProduct){
         return productService.getOneProduct(idProduct);
@@ -31,13 +35,16 @@ public class ProductController {
 //        return productService.getOneProduct(idProduct);
 //    }
     @PostMapping("/addProduct")
-    public ProductDTO saveProduct( ProductDTO productDTO){
-        return productService.saveProduct(productDTO);
+    public ApiResponse<ProductDTO> saveProduct( ProductDTO productDTO){
+        return ApiResponse.<ProductDTO>builder()
+                .result(productService.saveProduct(productDTO))
+                .build();
     }
 
     @DeleteMapping("/deleteProduct/{idProduct}")
-    public ProductDTO deleteProduct(@PathVariable ProductDTO productEntity){
-        return productService.saveProduct(productEntity);
+    public ApiResponse<String> deleteProduct(@PathVariable int idProduct){
+        productService.deleteProduct(idProduct);
+        return ApiResponse.<String>builder().result("Product Deleted").build();
     }
 
 }
