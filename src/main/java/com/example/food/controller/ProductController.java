@@ -1,5 +1,6 @@
 package com.example.food.controller;
 
+import com.example.food.dto.ProductDTO;
 import com.example.food.entity.ProductEntity;
 import com.example.food.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/getAllProduct")
-    public List<ProductEntity> getAllProduct(){
+    public List<ProductDTO> getAllProduct(){
         return productService.getAllProduct();
     }
 
-    @GetMapping("/getOneProduct/{idProduct}")
-    public Optional<ProductEntity> getOneProduct(@PathVariable int idProduct){
+    @GetMapping("/findOneProduct/{idProduct}")
+    public Optional<ProductDTO> getOneProduct(@PathVariable int idProduct){
         return productService.getOneProduct(idProduct);
     }
 
@@ -30,12 +31,12 @@ public class ProductController {
 //        return productService.getOneProduct(idProduct);
 //    }
     @PostMapping("/addProduct")
-    public ProductEntity saveProduct( ProductEntity productEntity){
-        return productService.saveProduct(productEntity);
+    public ProductDTO saveProduct( ProductDTO productDTO){
+        return productService.saveProduct(productDTO);
     }
 
     @DeleteMapping("/deleteProduct/{idProduct}")
-    public ProductEntity deleteProduct( ProductEntity productEntity){
+    public ProductDTO deleteProduct(@PathVariable ProductDTO productEntity){
         return productService.saveProduct(productEntity);
     }
 

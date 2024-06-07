@@ -20,15 +20,15 @@ public class OrdersEntity {
     private int id;
 
     @Column(name="orderdate",nullable = false)
-    private Date OrderDate;
+    private Date orderDate;
 
     @Column(name="ordernumber",length = 10)
-    private String OrderNumber;
+    private String orderNumber;
 
     @Column(name = "totalamount", precision = 12, scale = 2)
-    private BigDecimal TotalAmount;
+    private BigDecimal totalAmount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customer;
 

@@ -9,8 +9,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 @Table(name="product")
 public class ProductEntity {
     @Id
@@ -19,18 +18,18 @@ public class ProductEntity {
     private int id;
 
     @Column(name="productname",length = 50)
-    private String ProductName;
+    private String productName;
 
     @Column(name="unitprice", precision = 12, scale = 2)
-    private BigDecimal UnitPrice;
+    private BigDecimal unitPrice;
 
     @Column(name="package",length = 30)
-    private String Package;
+    private String packageType;
 
     @Column(name="isdiscontinued",nullable = false)
-    private byte IsDiscontinued;
+    private byte isDiscontinued;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", nullable = false)
     private SupplierEntity supplier;
 

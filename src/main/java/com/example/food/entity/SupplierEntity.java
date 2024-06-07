@@ -17,18 +17,25 @@ public class SupplierEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id",nullable = false)
     private int id;
+
     @Column(name="companyname",length = 40,nullable = false)
-    private String CompanyName;
+    private String companyName;
+
     @Column(name="contactname",length = 50)
-    private String ContactName;
+    private String contactName;
+
     @Column(name="contacttitle",length = 40)
-    private String ContactTitle;
+    private String contactTitle;
+
     @Column(name="city",length = 40)
-    private String City;
+    private String city;
+
     @Column(name="country",length = 40)
-    private String Country;
+    private String country;
+
     @Column(name="phone",length = 30)
-    private String Phone;
+    private String phone;
+
     @Column(name="fax",length = 30)
     private String Fax;
 
