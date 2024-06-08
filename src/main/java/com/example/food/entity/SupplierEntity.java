@@ -37,7 +37,7 @@ public class SupplierEntity {
     private String phone;
 
     @Column(name="fax",length = 30)
-    private String Fax;
+    private String fax;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)

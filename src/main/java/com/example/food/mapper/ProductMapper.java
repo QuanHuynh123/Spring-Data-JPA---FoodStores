@@ -7,7 +7,7 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-    //Các thuộc tính trùng tên thì không cần phải map
+    //Các thuộc tính trùng tên thì không cần phải map, cái này map cho vui thôi, từ supplier.id
     @Mappings({// Ánh xạ id
             @Mapping(source = "productName", target = "productName"),
             @Mapping(source = "unitPrice", target = "unitPrice"),
