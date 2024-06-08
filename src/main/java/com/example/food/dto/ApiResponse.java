@@ -1,15 +1,11 @@
 package com.example.food.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {

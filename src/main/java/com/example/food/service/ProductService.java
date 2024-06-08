@@ -3,8 +3,10 @@ package com.example.food.service;
 import com.example.food.dto.ProductDTO;
 import com.example.food.entity.ProductEntity;
 import com.example.food.entity.SupplierEntity;
+import com.example.food.enums.AppException;
 import com.example.food.mapper.ProductMapper;
 import com.example.food.repository.ProductRepository;
+import com.example.food.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
     @Autowired
-    SupplierEntity supplierEntity;
+    SupplierRepository supplierRepository;
     @Autowired
     ProductMapper productMapper;
 
@@ -28,13 +30,18 @@ public class ProductService {
                 .map(productMapper::toDTO)
                 .collect(Collectors.toList());
     }
-    public Optional<ProductDTO> getOneProduct(int idProduct){
-        Optional<ProductEntity> productEntity =  productRepository.findById(idProduct);
-        return productEntity.map(productMapper::toDTO);
+    public ProductDTO getOneProduct(int idProduct){
+        ProductEntity productEntity =  productRepository
+                .findById(idProduct).orElseThrow(() -> new AppException());
+        return productMapper.toDTO(productEntity);
     }
 
     public ProductDTO saveProduct(ProductDTO productDTO){
+        SupplierEntity supplierEntity = supplierRepository
+                .findById(productDTO.getSupplierId()).orElseThrow(RuntimeException::new);
+
         ProductEntity productEntity = productMapper.toEntity(productDTO);
+        productEntity.setSupplier(supplierEntity);
         ProductEntity saveEntity = productRepository.save(productEntity);
         return productMapper.toDTO(saveEntity);
     }

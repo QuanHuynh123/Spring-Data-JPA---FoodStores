@@ -25,8 +25,10 @@ public class ProductController {
 
     // add handling exception
     @GetMapping("/findOneProduct/{idProduct}")
-    public Optional<ProductDTO> getOneProduct(@PathVariable int idProduct){
-        return productService.getOneProduct(idProduct);
+    public ApiResponse<ProductDTO> getOneProduct(@PathVariable int idProduct){
+        return ApiResponse.<ProductDTO>builder()
+                .result(productService.getOneProduct(idProduct))
+                .build();
     }
 
     // 2 cách như nhau
@@ -35,7 +37,7 @@ public class ProductController {
 //        return productService.getOneProduct(idProduct);
 //    }
     @PostMapping("/addProduct")
-    public ApiResponse<ProductDTO> saveProduct( ProductDTO productDTO){
+    public ApiResponse<ProductDTO> saveProduct(@RequestBody ProductDTO productDTO){
         return ApiResponse.<ProductDTO>builder()
                 .result(productService.saveProduct(productDTO))
                 .build();

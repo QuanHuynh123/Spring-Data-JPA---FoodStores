@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductDTO {
-    @Setter(lombok.AccessLevel.NONE)
     int id;
     String productName;
     BigDecimal unitPrice;
