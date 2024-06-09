@@ -31,6 +31,8 @@ public class ProductService {
                 .map(productMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    // fix erorr code
     public ProductDTO getOneProduct(int idProduct){
         ProductEntity productEntity =  productRepository
                 .findById(idProduct).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
