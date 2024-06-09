@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatusCode;
 @Getter
 public enum ErrorCode {
     USER_NOT_FOUND(1001, "User not found!", HttpStatus.NOT_FOUND),
+
+    PRODUCT_NOT_FOUND(2001, "Product not found!", HttpStatus.NOT_FOUND),
+
     UNKNOWN_ERROR(9999, "Unknown error code", HttpStatus.BAD_REQUEST),
     ;
 

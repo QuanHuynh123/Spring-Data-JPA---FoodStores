@@ -13,16 +13,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrdersDTO {
 
-    private int id;
-    private Date orderDate;
+    int id;
+    Date orderDate;
 
-    private String orderNumber;
+    String orderNumber;
 
-    private BigDecimal totalAmount;
+    BigDecimal totalAmount;
 
-    private String  customerId;
+    String  customerId;
 
 }
