@@ -4,6 +4,7 @@ import com.example.food.dto.ProductDTO;
 import com.example.food.entity.ProductEntity;
 import com.example.food.entity.SupplierEntity;
 import com.example.food.enums.AppException;
+import com.example.food.enums.ErrorCode;
 import com.example.food.mapper.ProductMapper;
 import com.example.food.repository.ProductRepository;
 import com.example.food.repository.SupplierRepository;
@@ -32,7 +33,7 @@ public class ProductService {
     }
     public ProductDTO getOneProduct(int idProduct){
         ProductEntity productEntity =  productRepository
-                .findById(idProduct).orElseThrow(() -> new AppException());
+                .findById(idProduct).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
         return productMapper.toDTO(productEntity);
     }
 
