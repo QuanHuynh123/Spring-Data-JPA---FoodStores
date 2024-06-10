@@ -20,6 +20,13 @@ public class SupplierController {
                 .build();
     }
 
+    @GetMapping("/suppliers")
+    public ApiResponse<List<SupplierDTO>> getAllSuppliers() {
+        return ApiResponse.<List<SupplierDTO>>builder()
+                .result(supplierService.getAllSupplier())
+                .build();
+    }
+
     @GetMapping("/suppliersById/{id}")
     public ApiResponse<SupplierDTO> getSupplierById(@PathVariable int id) {
         return ApiResponse.<SupplierDTO>builder()
