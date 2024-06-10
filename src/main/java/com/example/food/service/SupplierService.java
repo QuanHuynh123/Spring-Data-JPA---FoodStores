@@ -2,6 +2,8 @@ package com.example.food.service;
 
 import com.example.food.dto.SupplierDTO;
 import com.example.food.entity.SupplierEntity;
+import com.example.food.enums.AppException;
+import com.example.food.enums.ErrorCode;
 import com.example.food.mapper.SupplierMapper;
 import com.example.food.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,29 +19,41 @@ public class SupplierService {
     @Autowired
     SupplierMapper supplierMapper;
 
-    List<SupplierDTO> getAllSupplier(){
+    public SupplierDTO addSupplier(SupplierDTO supplierDTO){
+        if(supplierRepository.existsById(supplierDTO.getId())) throw new AppException(ErrorCode.SUPPLIER_EXISTED);
+        SupplierEntity supplierEntity = supplierMapper.toEntity(supplierDTO);
+        return supplierMapper.toDTO(supplierRepository.save(supplierEntity));
+    }
+
+    public List<SupplierDTO> getAllSupplier(){
         List<SupplierEntity> supplierEntities = supplierRepository.findAll();
         return supplierEntities.stream()
                 .map(supplierMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    List<SupplierDTO> findSupplierBycontactName(String contactName){
+    public List<SupplierDTO> findSupplierByContactName(String contactName){
         List<SupplierEntity> supplierEntities = supplierRepository.findBycontactName(contactName);
         return supplierEntities.stream()
                 .map(supplierMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public boolean deleteSupplier(Integer idSupplier){
-        if (supplierRepository.existsById(idSupplier)) {
-            supplierRepository.deleteById(idSupplier);
-            return true;
-        }else return false;
+    public SupplierDTO findSupplierById(int id){
+        return supplierMapper.toDTO(supplierRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.SUPPLIER_NOT_FOUND)));
     }
 
-    public SupplierDTO addSupplier(SupplierDTO supplierDTO){
-        SupplierEntity supplierEntity = supplierMapper.toEntity(supplierDTO);
-        return supplierMapper.toDTO(supplierRepository.save(supplierEntity));
+    public SupplierDTO updateSupplier(int id, SupplierDTO supplierDTO){
+        SupplierEntity entity = supplierRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.SUPPLIER_NOT_FOUND));
+
+        supplierMapper.update(entity, supplierDTO);
+        return supplierMapper.toDTO(supplierRepository.save(entity));
     }
+
+    public void deleteSupplier(Integer idSupplier){
+        supplierRepository.deleteById(idSupplier);
+    }
+
 }
