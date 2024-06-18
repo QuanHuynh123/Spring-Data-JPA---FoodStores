@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,5 +17,6 @@ public class ProductDTO {
     BigDecimal unitPrice;
     String packageType;
     byte isDiscontinued;
+    List<SupplierDTO> suppliers;
     int supplierId; // Only supplier ID, not the entire Supplier entity
 }

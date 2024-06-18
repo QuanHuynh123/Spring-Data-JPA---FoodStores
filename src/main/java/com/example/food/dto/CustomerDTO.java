@@ -3,6 +3,8 @@ package com.example.food.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,6 @@ public class CustomerDTO {
     String city;
     String country;
     String phone;
+    List<OrdersDTO> orders ;
+    String ordersId;
 }

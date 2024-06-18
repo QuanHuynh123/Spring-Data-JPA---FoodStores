@@ -20,6 +20,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
     @Override
     Optional<ProductEntity> findById(Integer idProduct);
 
+    List<ProductEntity> findByProductName(String productName);
+
     @Override
     <S extends ProductEntity> S save(S entity);
 
@@ -28,8 +30,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
     @Override
     void deleteById(Integer idProduct);
-
-    @Override
-    <S extends ProductEntity, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction);
 
 }

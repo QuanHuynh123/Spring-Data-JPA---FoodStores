@@ -2,6 +2,7 @@ package com.example.food.controller;
 
 import com.example.food.dto.ApiResponse;
 import com.example.food.dto.CustomerDTO;
+import com.example.food.enums.ErrorCode;
 import com.example.food.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,19 +30,24 @@ public class CustomerController {
     }
 
     @PostMapping("/addCustomer")
-    public ApiResponse<CustomerDTO> addCustomer(CustomerDTO customerDTO){
+    public ApiResponse<CustomerDTO> addCustomer(@RequestBody CustomerDTO customerDTO){
         return ApiResponse.<CustomerDTO>builder()
-                //.result("Show user after created")
-                .message("Create customer")
+                .result(customerService.addCustomer(customerDTO))
+                .build();
+    }
+
+    @PutMapping("/updateCustomer")
+    public ApiResponse<CustomerDTO> updateCustomer(@RequestBody CustomerDTO customerDTO){
+        return ApiResponse.<CustomerDTO>builder()
+                .result(customerService.updateCustomer(customerDTO))
                 .build();
     }
 
     @DeleteMapping("/deleteCustomer/{idCustomer}")
     public ApiResponse<String> deleteCustomer(@PathVariable int idCustomer){
 
-        customerService.deleteCustomer(idCustomer);
         return ApiResponse.<String>builder()
-                .result("Customer deleted")
+                .result(customerService.deleteCustomer(String.valueOf(idCustomer)))
                 .build();
     }
 }

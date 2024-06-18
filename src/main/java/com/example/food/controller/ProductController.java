@@ -24,10 +24,17 @@ public class ProductController {
     }
 
     // add handling exception
-    @GetMapping("/findOneProduct/{idProduct}")
+    @GetMapping("/findProduct/{idProduct}")
     public ApiResponse<ProductDTO> getOneProduct(@PathVariable int idProduct){
         return ApiResponse.<ProductDTO>builder()
-                .result(productService.getOneProduct(idProduct))
+                .result(productService.findOneProductByName(idProduct))
+                .build();
+    }
+
+    @GetMapping("/findProductByName/{nameProduct}")
+    public ApiResponse<List<ProductDTO>> getOneProduct(@PathVariable String nameProduct){
+        return ApiResponse.<List<ProductDTO>>builder()
+                .result(productService.findProductByName(nameProduct))
                 .build();
     }
 

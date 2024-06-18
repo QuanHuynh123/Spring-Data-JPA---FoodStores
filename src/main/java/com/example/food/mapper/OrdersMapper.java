@@ -10,13 +10,9 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface OrdersMapper {
-    @Mappings({// Ánh xạ id
-            @Mapping(source = "customer.id", target = "customerId")
-    })
     OrdersDTO toDTO(OrdersEntity ordersEntity);
 
-    @Mappings({
-            @Mapping(source = "customerId", target = "customer.id")
-    })
     OrdersEntity toEntity(OrdersDTO ordersDTO);
+
+
 }

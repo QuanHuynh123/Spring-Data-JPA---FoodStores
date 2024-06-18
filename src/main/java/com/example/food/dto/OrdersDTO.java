@@ -15,14 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrdersDTO {
-
-    private int id;
-    private Date orderDate;
-
-    private String orderNumber;
-
-    private BigDecimal totalAmount;
-
-    private String  customerId;
-
+     int id;
+     Date orderDate;
+     String orderNumber;
+     BigDecimal totalAmount;
+     List<OrderItemDTO> orderItems;
 }

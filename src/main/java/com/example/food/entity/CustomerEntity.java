@@ -31,9 +31,9 @@ public class CustomerEntity {
 
     @Column(name="phone",length = 20, nullable = false)
     private String phone;
-
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
+//
+//    @Getter(AccessLevel.NONE)
+//    @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "customer")
     private List<OrdersEntity> orders;
 

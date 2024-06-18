@@ -10,15 +10,15 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
-    @Mappings({// Ánh xạ id
-            @Mapping(source = "product.id", target = "productId"),
-            @Mapping(source = "order.id", target = "orderId")
-    })
+//    @Mappings({// Ánh xạ id
+//            @Mapping(source = "product.id", target = "productId"),
+//            @Mapping(source = "order.id", target = "orderId")
+//    })
     OrderItemDTO toDTO(OrderItemEntity orderItemEntity);
 
-    @Mappings({
-            @Mapping(source = "productId", target = "product.id"),
-            @Mapping(source = "orderId", target = "order.id")
-    })
+//    @Mappings({
+//            @Mapping(source = "productId", target = "product.id"),
+//            @Mapping(source = "orderId", target = "order.id")
+//    })
     OrderItemEntity toEntity(OrderItemDTO orderItemDTO);
 }
