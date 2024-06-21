@@ -1,15 +1,18 @@
 package com.example.food.enums;
 
 import com.example.food.dto.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalException {
 
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ApiResponse> handlingRuntimeException(RuntimeException e) {
+        log.error(e.getMessage());
         ApiResponse apiResponse = ApiResponse.builder()
                 .code(ErrorCode.UNKNOWN_ERROR.getCode())
                 .message(ErrorCode.UNKNOWN_ERROR.getMessage())

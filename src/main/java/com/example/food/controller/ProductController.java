@@ -2,15 +2,18 @@ package com.example.food.controller;
 
 import com.example.food.dto.ApiResponse;
 import com.example.food.dto.ProductDTO;
-import com.example.food.entity.ProductEntity;
 import com.example.food.service.ProductService;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductController {
 
     @Autowired

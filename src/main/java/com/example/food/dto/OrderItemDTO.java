@@ -13,9 +13,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderItemDTO {
-    private  int id;
-    private String productId;
-    private BigDecimal unitPrice;
-    private int quantity;
-    private String orderId;
+    int id;
+    String productId;
+    BigDecimal unitPrice;
+    int quantity;
+    String orderId;
 }

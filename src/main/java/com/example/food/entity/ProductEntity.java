@@ -2,6 +2,7 @@ package com.example.food.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,31 +11,32 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name="product")
+@Table(name = "product")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable = false)
-    private int id;
+    @Column(name = "id", nullable = false)
+    int id;
 
-    @Column(name="productname",length = 50)
-    private String productName;
+    @Column(name = "productname", length = 50)
+    String productName;
 
-    @Column(name="unitprice", precision = 12, scale = 2)
-    private BigDecimal unitPrice;
+    @Column(name = "unitprice", precision = 12, scale = 2)
+    BigDecimal unitPrice;
 
-    @Column(name="package",length = 30)
-    private String packageType;
+    @Column(name = "package", length = 30)
+    String packageType;
 
-    @Column(name="isdiscontinued",nullable = false)
-    private byte isDiscontinued;
+    @Column(name = "isdiscontinued", nullable = false)
+    byte isDiscontinued;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", nullable = false)
-    private SupplierEntity supplier;
+    SupplierEntity supplier;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "product")
-    private List<OrderItemEntity> orderItems;
+    List<OrderItemEntity> orderItems;
 }
