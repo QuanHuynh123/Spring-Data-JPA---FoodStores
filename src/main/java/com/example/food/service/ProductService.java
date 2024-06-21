@@ -59,7 +59,7 @@ public class ProductService {
 
     public  ProductDTO updateProduct(ProductDTO productDTO){
         SupplierEntity supplierEntity = supplierRepository.findById(productDTO.getSupplierId())
-                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new AppException(ErrorCode.CUSTOMER_NOT_FOUND));
 
         ProductEntity productEntity = productMapper.toEntity(productDTO);
         productEntity.setSupplier(supplierEntity);

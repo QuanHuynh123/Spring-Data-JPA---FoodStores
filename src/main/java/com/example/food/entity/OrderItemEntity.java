@@ -1,37 +1,36 @@
 package com.example.food.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="orderitem")
+@Table(name = "orderitem")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable = false)
-    private  int id;
+    @Column(name = "id", nullable = false)
+    int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductEntity product;
+    ProductEntity product;
 
-    @Column(name="unitprice", precision = 12, scale = 2, nullable = false)
-    private BigDecimal unitPrice;
+    @Column(name = "unitprice", precision = 12, scale = 2, nullable = false)
+    BigDecimal unitPrice;
 
-    @Column(name="quantity",nullable = false)
-    private int quantity;
+    @Column(name = "quantity", nullable = false)
+    int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
-    private OrdersEntity order;
+    OrdersEntity order;
 
 }

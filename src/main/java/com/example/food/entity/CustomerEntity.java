@@ -2,6 +2,7 @@ package com.example.food.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -10,31 +11,32 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="customer")
+@Table(name = "customer")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable = false)
-    private int id;
+    @Column(name = "id", nullable = false)
+    int id;
 
-    @Column(name="firstname",length = 40, nullable = false)
-    private String firstName;
+    @Column(name = "firstname", length = 40, nullable = false)
+    String firstName;
 
-    @Column(name="lastname", length = 40, nullable = false)
-    private String lastName;
+    @Column(name = "lastname", length = 40, nullable = false)
+    String lastName;
 
     @Column(name = "city", length = 40)
-    private String city;
+    String city;
 
-    @Column(name="country",length = 40)
-    private String country;
+    @Column(name = "country", length = 40)
+    String country;
 
-    @Column(name="phone",length = 20, nullable = false)
-    private String phone;
-//
+    @Column(name = "phone", length = 20, nullable = false)
+    String phone;
+    //
 //    @Getter(AccessLevel.NONE)
 //    @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "customer")
-    private List<OrdersEntity> orders;
+    List<OrdersEntity> orders;
 
 }

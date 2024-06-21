@@ -3,6 +3,7 @@ package com.example.food.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
@@ -11,38 +12,38 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="supplier")
+@Table(name = "supplier")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SupplierEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable = false)
-    private int id;
+    @Column(name = "id", nullable = false)
+    int id;
 
-    @Column(name="companyname",length = 40,nullable = false)
-    private String companyName;
+    @Column(name = "companyname", length = 40, nullable = false)
+    String companyName;
 
-    @Column(name="contactname",length = 50)
-    private String contactName;
+    @Column(name = "contactname", length = 50)
+    String contactName;
 
-    @Column(name="contacttitle",length = 40)
-    private String contactTitle;
+    @Column(name = "contacttitle", length = 40)
+    String contactTitle;
 
-    @Column(name="city",length = 40)
-    private String city;
+    @Column(name = "city", length = 40)
+    String city;
 
-    @Column(name="country",length = 40)
-    private String country;
+    @Column(name = "country", length = 40)
+    String country;
 
-    @Column(name="phone",length = 30)
-    private String phone;
+    @Column(name = "phone", length = 30)
+    String phone;
 
-    @Column(name="fax",length = 30)
-    private String fax;
+    @Column(name = "fax", length = 30)
+    String fax;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductEntity> products;
-
+    List<ProductEntity> products;
 
 }

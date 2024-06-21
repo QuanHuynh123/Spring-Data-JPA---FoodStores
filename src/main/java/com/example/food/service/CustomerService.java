@@ -50,7 +50,7 @@ public class CustomerService {
 
     public CustomerDTO updateCustomer(CustomerDTO customerDTO){
         CustomerEntity customerEntity = (customerRepository.findById(String.valueOf(customerDTO.getId()))
-                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND)));
+                .orElseThrow(() -> new AppException(ErrorCode.CUSTOMER_NOT_FOUND)));
 
         CustomerEntity customerEntityUpdate = customerMapper.toEntity(customerDTO);
         customerEntityUpdate.setOrders(customerEntity.getOrders());
@@ -65,7 +65,7 @@ public class CustomerService {
 
     public String deleteCustomer(String idCustomer){
         if(!checkCustomerExists(idCustomer)) {
-            throw new AppException(ErrorCode.USER_NOT_FOUND);
+            throw new AppException(ErrorCode.CUSTOMER_NOT_FOUND);
         }
 
         customerRepository.deleteById(idCustomer);
