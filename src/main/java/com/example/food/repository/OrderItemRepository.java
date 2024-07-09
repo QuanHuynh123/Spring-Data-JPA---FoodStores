@@ -11,7 +11,4 @@ import java.util.List;
 public interface OrderItemRepository extends JpaRepository<OrderItemEntity,Integer> {
     @Override
     List<OrderItemEntity> findAll();
-
-    @Transactional
-    void deleteByOrderId(int orderId);
 }
