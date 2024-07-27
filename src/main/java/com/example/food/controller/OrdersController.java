@@ -3,6 +3,7 @@ package com.example.food.controller;
 import com.example.food.dto.ApiResponse;
 import com.example.food.dto.OrdersDTO;
 import com.example.food.service.OrdersService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,4 +51,13 @@ public class OrdersController {
                 .build();
     }
 
+    @GetMapping("/excelOrder")
+    public void generateExcelReportOrder(HttpServletResponse response) throws Exception{
+        response.setContentType("applicatiojn/octet-steam");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attackment;filename = foodReport.xml";
+
+        response.setHeader(headerKey,headerValue);
+        ordersService.generateExcel(response);
+    }
 }
