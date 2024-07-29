@@ -21,11 +21,11 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity,String>
     boolean existsById(String idCustomer);
 
     // Phụ thuộc vào việc tên biến sau "By" khớp với biến Entity
-    List<CustomerEntity> findAllByfirstName(String firstName);
+    List<CustomerEntity> findAllByFirstName(String firstName);
 
     Optional<CustomerEntity> findByphone(String idCustomer);
     
-    <S extends CustomerEntity, R> R findByfirstName(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction);
+
 
     @Override
     <S extends CustomerEntity> S save(S entity);

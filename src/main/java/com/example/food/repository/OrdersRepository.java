@@ -19,25 +19,24 @@ public interface OrdersRepository extends JpaRepository<OrdersEntity,Integer> {
     @Override
     boolean existsById(Integer idOrder);
 
-    @Query("SELECT * FROM OrdersEntity o JOIN o.customer c WHERE c.phone = :phone")
+    @Query("SELECT o FROM OrdersEntity o JOIN o.customer c WHERE c.phone = :phone")
     List<OrdersEntity> findOrdersByCustomerPhone(@Param("phone") String phone);
 
-    @Query("SELECT * FROM OrdersEntity o JOIN o.customer c WHERE c.id = :customerId")
-    List<OrdersEntity> findOrdersByCustomerId( @Param("customerId") Integer customerId);
-
+    @Query("SELECT o FROM OrdersEntity o JOIN o.customer c WHERE c.id = :customerId")
+    List<OrdersEntity> findOrdersByCustomerId(@Param("customerId") Integer customerId);
 
     // Lấy tất cả đơn hàng và sắp xếp theo ngày cũ đến mới
-    @Query("SELECT * FROM OrdersEntity o ORDER BY o.orderdate ASC")
+    @Query("SELECT o FROM OrdersEntity o ORDER BY o.orderDate ASC")
     List<OrdersEntity> getAllOrdersOrderByDateAsc();
 
     // Lấy tất cả đơn hàng và sắp xếp theo ngày mới đến cũ
-    @Query("SELECT * FROM orders o ORDER BY o.orderdate DESC")
+    @Query("SELECT o FROM OrdersEntity o ORDER BY o.orderDate DESC")
     List<OrdersEntity> getAllOrdersOrderByDateDesc();
 
-        @Query("SELECT new com.example.food.dto.OrdersCountDTO(MONTH(o.orderDate), COUNT(o)) " +
-                "FROM OrdersEntity o " +
-                "WHERE o.orderDate >= :threeMonthsAgo " +
-                "GROUP BY MONTH(o.orderDate) " +
-                "ORDER BY MONTH(o.orderDate)")
-        List<OrdersCountDTO> countOrdersInLastThreeMonths(@Param("threeMonthsAgo") LocalDateTime threeMonthsAgo);
+    @Query("SELECT new com.example.food.dto.OrdersCountDTO(MONTH(o.orderDate), COUNT(o)) " +
+            "FROM OrdersEntity o " +
+            "WHERE o.orderDate >= :threeMonthsAgo " +
+            "GROUP BY MONTH(o.orderDate) " +
+            "ORDER BY MONTH(o.orderDate)")
+    List<OrdersCountDTO> countOrdersInLastThreeMonths(@Param("threeMonthsAgo") LocalDateTime threeMonthsAgo);
 }

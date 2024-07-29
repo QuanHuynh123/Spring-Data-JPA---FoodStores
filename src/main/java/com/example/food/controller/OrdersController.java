@@ -55,7 +55,7 @@ public class OrdersController {
     public void generateExcelReportOrder(HttpServletResponse response) throws Exception{
         response.setContentType("applicatiojn/octet-steam");
         String headerKey = "Content-Disposition";
-        String headerValue = "attackment;filename = foodReport.xml";
+        String headerValue = "attackment;filename = foodReport.xls";
 
         response.setHeader(headerKey,headerValue);
         ordersService.generateExcel(response);

@@ -30,8 +30,8 @@ public class CustomerService {
                 .collect(Collectors.toList());
     }
 
-    public List<CustomerDTO> findCustomerByFirstName(String firstaName){
-        List<CustomerEntity> customerEntity = customerRepository.findAllByfirstName(firstaName);
+    public List<CustomerDTO> findCustomerByFirstName(String firstName){
+        List<CustomerEntity> customerEntity = customerRepository.findAllByFirstName(firstName);
         return customerEntity.stream()
                 .map(customerMapper::toDTO)
                 .collect(Collectors.toList());
